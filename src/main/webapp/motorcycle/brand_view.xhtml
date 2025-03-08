@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:f="jakarta.faces.core"
+                template="/WEB-INF/template/main.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{brandView.id}" required="true"/>
+        <f:viewAction action="#{brandView.init()}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+        <h:outputStylesheet library="motorcycle" name="css/brand_view.css"/>
+
+        <article>
+            <header><h2><h:outputText value="#{brandView.brand.name}"/></h2></header>
+
+            <section>
+                <div>
+                    <p><strong>#{messages['brand_view.founded']}:</strong> #{brandView.brand.dateOfFounding}</p>
+                    <p><strong>#{messages['brand_view.n_of_empl']}:</strong> #{brandView.brand.numberOfEmployees}</p>
+                </div>
+            </section>
+
+            <section>
+                <h3>#{messages['brand_view.motorcycles']}</h3>
+
+                <h:dataTable value="#{brandView.brand.motorcycles}" var="motorcycle" border="1">
+                    <h:column>
+                        <f:facet name="header">#{messages['brand_view.name']}</f:facet>
+                        <h:outputText value="#{motorcycle.name}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{messages['brand_view.version']}</f:facet>
+                        <h:outputText value="#{motorcycle.version}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{messages['brand_view.created']}</f:facet>
+                        <h:outputText value="#{motorcycle.creationDateTime}">
+                            <f:convertDateTime type="localDateTime" pattern="HH:mm dd-MM-yyyy" />
+                        </h:outputText>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{messages['brand_view.updated']}</f:facet>
+                        <h:outputText value="#{motorcycle.updateDateTime}">
+                            <f:convertDateTime type="localDateTime" pattern="HH:mm dd-MM-yyyy" />
+                        </h:outputText>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{messages['brand_view.view']}</f:facet>
+                        <h:link outcome="/motorcycle/motorcycle_view.xhtml" value="#{messages['brand_view.view']}">
+                            <f:param name="id" value="#{motorcycle.id}" />
+                        </h:link>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{messages['brand_view.edit']}</f:facet>
+                        <h:link outcome="/motorcycle/motorcycle_edit.xhtml" value="#{messages['brand_view.edit']}">
+                            <f:param name="id" value="#{motorcycle.id}"/>
+                        </h:link>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{messages['brand_view.delete']}</f:facet>
+                        <h:form>
+                            <h:commandButton value="#{messages['brand_view.delete']}" action="#{brandView.deleteMotorcycleAction(motorcycle)}"/>
+                        </h:form>
+                    </h:column>
+
+                    <f:facet name="footer">
+                        <h:button outcome="/motorcycle/motorcycle_create__basic.xhtml" value="#{messages['brand_view.create']}"/>
+                    </f:facet>
+
+                </h:dataTable>
+            </section>
+
+        </article>
+    </ui:define>
+
+</ui:composition>

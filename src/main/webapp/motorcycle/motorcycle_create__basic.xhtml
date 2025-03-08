@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:f="jakarta.faces.core"
+                template="/WEB-INF/template/main.xhtml">
+
+    <f:metadata>
+        <f:viewAction action="#{motorcycleCreate.init()}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+        <h:outputStylesheet library="motorcycle" name="css/motorcycle_create__basic.css"/>
+
+        <article>
+            <header><h2>#{messages['motorcycle_create.header']}</h2></header>
+            <h:form onreset="onReset()" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <div>
+                        <h:outputLabel for="name" value="#{messages['motorcycle_create.name']}:" styleClass="form-label"/>
+                        <h:inputText id="name" value="#{motorcycleCreate.motorcycle.name}" styleClass="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <h:outputLabel for="displacement" value="#{messages['motorcycle_create.displacement']}:" styleClass="form-label"/>
+                        <h:inputText id="displacement" value="#{motorcycleCreate.motorcycle.displacement}" styleClass="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <h:outputLabel for="brand" value="#{messages['motorcycle_create.select_brand']}:" styleClass="form-label"/>
+                        <h:selectOneMenu id="brand" value="#{motorcycleCreate.motorcycle.brand}" styleClass="form-control"
+                                         required="true" requiredMessage="#{messages['motorcycle_create.required_message']}">
+
+                            <f:selectItems value="#{motorcycleCreate.brands}" var="brand"
+                                           itemValue="#{brand}" itemLabel="#{brand.name}"/>
+                        </h:selectOneMenu>
+
+                        <h:message for="brand" style="color:red"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 p-2 text-center">
+                        <h:commandButton value="#{messages['motorcycle_create.create']}" styleClass="btn btn-primary" action="#{motorcycleCreate.confirmAction()}"/>
+                    </div>
+                    <div class="col-2 p-2 text-center">
+                        <h:commandButton value="#{messages['motorcycle_create.cancel']}" styleClass="btn btn-secondary" action="#{motorcycleCreate.cancelAction()}"/>
+                    </div>
+                </div>
+            </h:form>
+        </article>
+    </ui:define>
+
+</ui:composition>

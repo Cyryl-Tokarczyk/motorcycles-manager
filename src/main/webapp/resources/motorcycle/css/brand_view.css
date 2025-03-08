@@ -1,0 +1,61 @@
+/* Table container styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    text-align: left;
+}
+
+/* Header styles */
+table th {
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 12px;
+    border-bottom: 2px solid #ddd;
+    font-weight: bold;
+}
+
+/* Data row styles */
+table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Alternate row coloring */
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover effect for rows */
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Link styling for "View" and "Edit" links */
+a {
+    text-decoration: none;
+    color: #3498db;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #2980b9;
+}
+
+/* Button styling for "Delete" and "Create" buttons */
+button, input[type="submit"], input[type="button"] {
+    background-color: #ce3e25;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+    background-color: #ce3e25;
+}

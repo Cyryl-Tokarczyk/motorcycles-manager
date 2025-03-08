@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="jakarta.faces.core"
+                template="/WEB-INF/template/main.xhtml">
+
+    <ui:define name="content">
+        <f:loadBundle var="msg" basename="ct.pjee.motorcycles.authentication.view.i18n.messages"/>
+        <article>
+            <header><h2>#{msg.header}</h2></header>
+            <section>
+                <h:form onreset="onReset()">
+                    <div>
+                        <h:outputLabel for="username" value="#{msg.username}:"/>
+                        <h:inputText id="username" name="j_username" type="text" value="#{userLogin.username}"/>
+                    </div>
+
+                    <div>
+                        <h:outputLabel for="password" value="#{msg.password}:"/>
+                        <h:inputSecret id="password" name="j_password" value="#{userLogin.password}"/>
+                    </div>
+
+                    <div>
+                        <div>
+                            <h:commandButton type="submit" value="#{msg.login}" action="#{userLogin.loginAction()}"/>
+                        </div>
+                        <div>
+                            <h:commandButton type="reset" value="#{msg.reset}"/>
+                        </div>
+                    </div>
+                </h:form>
+            </section>
+        </article>
+    </ui:define>
+
+</ui:composition>

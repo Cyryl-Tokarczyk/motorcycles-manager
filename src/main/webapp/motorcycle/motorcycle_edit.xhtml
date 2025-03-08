@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:f="jakarta.faces.core"
+                template="/WEB-INF/template/main.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{motorcycleEdit.id}" required="true"/>
+        <f:viewAction action="#{motorcycleEdit.init()}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+        <h:outputStylesheet library="motorcycle" name="css/motorcycle_edit.css"/>
+
+        <article>
+            <header><h2>#{messages['motorcycle_edit.header']}</h2></header>
+            <h:form onreset="onReset()" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <div>
+                        <h:outputLabel for="name" value="#{messages['motorcycle_edit.name']}:" styleClass="form-label"/>
+                        <h:inputText id="name" value="#{motorcycleEdit.motorcycle.name}" styleClass="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <h:outputLabel for="displacement" value="#{messages['motorcycle_edit.displacement']}:" styleClass="form-label"/>
+                        <h:inputText id="displacement" value="#{motorcycleEdit.motorcycle.displacement}" styleClass="form-control"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 p-2 text-center">
+                        <h:commandButton value="#{messages['motorcycle_edit.save']}" styleClass="btn btn-primary" action="#{motorcycleEdit.saveAction()}"/>
+                    </div>
+                    <div class="col-2 p-2 text-center">
+                        <h:commandButton value="#{messages['motorcycle_edit.cancel']}" styleClass="btn btn-secondary" action="#{motorcycleEdit.cancelAction()}"/>
+                    </div>
+                </div>
+            </h:form>
+        </article>
+    </ui:define>
+
+</ui:composition>

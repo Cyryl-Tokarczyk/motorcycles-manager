@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core">
+<f:view>
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>#{messages.title}</title>
+
+        <h:outputStylesheet library="default" name="css/main.css"/>
+    </h:head>
+
+    <h:body>
+        <div>
+            <header>
+                <h:graphicImage value="#{messages.image_path}" alt="Ikonka"/>
+                <h1>#{messages.title}</h1>
+                <h:form rendered="#{facesContext.externalContext.userPrincipal != null}">
+                    #{messages.logged}: <h:outputText value="#{facesContext.externalContext.userPrincipal.name}" />
+                    <h:commandButton value="#{messages.logout}" action="#{userLogout.logoutAction()}" />
+                </h:form>
+                <h:form rendered="#{facesContext.externalContext.userPrincipal == null}">#{messages.not_logged}</h:form>
+            </header>
+
+            <nav>
+                <div>
+                    <ul>
+                        <li>
+                            <h:link outcome="/index.xhtml">#{messages['nav.home']}</h:link>
+                        </li>
+                        <li>
+                            <h:link outcome="/motorcycle/brand_list.xhtml">#{messages['nav.brands']}</h:link>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main>
+                <ui:insert name="content"/>
+            </main>
+
+            <footer>
+                <div>
+                    #{messages.description}<br></br>
+                    Cyryl Tokarczyk
+                </div>
+            </footer>
+        </div>
+    </h:body>
+</f:view>
+</html>

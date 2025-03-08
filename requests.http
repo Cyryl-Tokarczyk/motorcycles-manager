@@ -1,0 +1,183 @@
+### Get all brands
+
+GET http://localhost:9080/laby/api/brands
+
+### Get a brand
+
+GET http://localhost:9080/laby/api/brands/122820a9-328b-44c9-ac28-dc609df8037c
+
+### Get a nonexistant brand
+
+GET http://localhost:9080/laby/api/brands/222820a9-328b-44c9-ac28-dc609df8037c
+
+### Put new brand
+
+PUT http://localhost:9080/laby/api/brands
+Content-Type: application/json
+
+{
+  "name": "Honda",
+  "dateOfFounding": "1896-10-15",
+  "numberOfEmployees": 34010
+}
+
+### Patch a brand
+
+PATCH http://localhost:9080/laby/api/brands/122820a9-328b-44c9-ac28-dc609df8037c
+Content-Type: application/json
+
+{
+  "name": "YYamaha",
+  "dateOfFounding": "1234-12-12",
+  "numberOfEmployees": 12345
+}
+
+### Delete a brand
+
+DELETE http://localhost:9080/laby/api/brands/122820a9-328b-44c9-ac28-dc609df8037c
+
+
+
+
+### Get all motorcycles
+
+GET http://localhost:9080/laby/api/motorcycles
+
+### Get a motorcycle
+
+GET http://localhost:9080/laby/api/motorcycles/199820a9-328b-44c9-ac28-dc609df8037c
+
+### Get motorcycles by brand
+
+GET http://localhost:9080/laby/api/brands/122820a9-328b-44c9-ac28-dc609df8037c/motorcycles
+
+### Get a nonexistant motorcycle
+
+GET http://localhost:9080/laby/api/motorcycles/299820a9-328b-44c9-ac28-dc609df8037c
+
+### Put new motorcycle
+
+PUT http://localhost:9080/laby/api/brands/122820a9-328b-44c9-ac28-dc609df8037c/motorcycles
+Content-Type: application/json
+
+{
+  "name": "MT-07",
+  "displacement": 700
+}
+
+### Patch a motorcycle
+
+PATCH http://localhost:9080/laby/api/brands/122820a9-328b-44c9-ac28-dc609df8037c/motorcycles/199820a9-328b-44c9-ac28-dc609df8037c
+Content-Type: application/json
+
+{
+  "name": "XJ-600",
+  "displacement": 650
+}
+
+### Delete a motorcycle
+
+DELETE http://localhost:9080/laby/api/motorcycles/199820a9-328b-44c9-ac28-dc609df8037c
+
+
+
+
+
+
+
+### Get all users
+
+GET http://localhost:9080/laby/api/users
+
+### Get user Oskar
+
+GET http://localhost:9080/laby/api/users/ed6cfb2a-cad7-47dd-9b56-9d1e3c7a4197
+
+### Get nonexistant user
+
+GET http://localhost:9080/laby/api/users/ed6cfb2a-cad7-47dd-9b56-9e1e3c7a4197
+
+### Put new user
+
+PUT http://localhost:9080/laby/api/users
+Content-Type: application/json
+
+{
+  "username": "Aron",
+  "roles": [
+    "user"
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Get user avatar
+
+GET http://localhost:9080/laby/api/users/81e1c2a9-7f57-439b-b53d-6db88b071e4e/avatar
+
+### Get nonexistant avatar
+
+GET http://localhost:9080/laby/api/users/81e1c2a9-7f57-439b-b53d-6db98b071e4e/avatar
+
+### Create an avatar for a user
+
+PUT http://localhost:9080/laby/api/users/ed6cfb2a-cad7-47dd-9b56-9d1e3c7a4197/avatar
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="avatar"; filename="avatar.png"
+
+< ./avatars/Arystoteles.png
+--WebAppBoundary--
+
+### Replace existing avatar with another
+
+PUT http://localhost:9080/laby/api/users/ed6cfb2a-cad7-47dd-9b56-9d1e3c7a4197/avatar
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="avatar"; filename="avatar.png"
+
+< ./avatars/roman-emperor-marcus-aurelius-min.png
+--WebAppBoundary--
+
+### Get the new avatar
+
+GET http://localhost:9080/laby/api/users/ed6cfb2a-cad7-47dd-9b56-9d1e3c7a4197/avatar
+
+### Delete an avatar
+
+DELETE http://localhost:9080/laby/api/users/ed6cfb2a-cad7-47dd-9b56-9d1e3c7a4197/avatar
+
+### Try to get the deleted avatar
+
+GET http://localhost:9080/laby/api/users/ed6cfb2a-cad7-47dd-9b56-9d1e3c7a4197/avatar
+
+
+
+
+
+
+
+
+
+

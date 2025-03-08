@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:f="jakarta.faces.core"
+                template="/WEB-INF/template/main.xhtml">
+
+    <ui:define name="content">
+        <h:outputStylesheet library="motorcycle" name="css/brand_list.css"/>
+
+        <article>
+            <header><h2>#{messages['nav.brands']}</h2></header>
+
+            <h:dataTable value="#{brandList.brands.brands}" var="brand">
+
+                <h:column>
+                    <f:facet name="header">#{messages['brand_list.name']}</f:facet>
+                    <h:outputText value="#{brand.name}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{messages['brand_list.view']}</f:facet>
+                    <h:link outcome="/motorcycle/brand_view.xhtml" value="#{messages['brand_list.view']}">
+                        <f:param name="id" value="#{brand.id}"/>
+                    </h:link>
+                </h:column>
+
+                <h:column rendered="#{facesContext.externalContext.isUserInRole('admin')}">
+                    <f:facet name="header">#{messages['brand_list.delete']}</f:facet>
+                    <h:form>
+                        <h:commandButton value="#{messages['brand_list.delete']}" action="#{brandList.deleteAction(brand)}"/>
+                    </h:form>
+                </h:column>
+
+            </h:dataTable>
+        </article>
+    </ui:define>
+
+</ui:composition>

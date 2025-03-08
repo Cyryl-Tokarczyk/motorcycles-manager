@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:f="jakarta.faces.core"
+                template="/WEB-INF/template/main.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{motorcycleView.id}" required="true"/>
+        <f:viewAction action="#{motorcycleView.init()}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+        <article>
+            <header><h2><h:outputText value="#{motorcycleView.motorcycle.name}"/></h2></header>
+
+            <section>
+                <div>
+                    <p><strong>#{messages['motorcycle_view.brand']}:</strong> #{motorcycleView.motorcycle.brand}</p>
+                    <p><strong>#{messages['motorcycle_view.displacement']}:</strong> #{motorcycleView.motorcycle.displacement} cc</p>
+                </div>
+            </section>
+
+        </article>
+    </ui:define>
+
+</ui:composition>
